@@ -1,0 +1,2 @@
+require './teacher'
+require './student'
