@@ -14,7 +14,7 @@ require './rental'
 # p capitalizedTrimmedPerson.correct_name
 
 b = Book.new('way', 'Yun')
-student = Student.new(nil,12, 'Rio')
+student = Student.new(nil, 12, 'Rio')
 student.add_rental('2021', b)
 student.add_rental('2022', b)
 p student.rentals

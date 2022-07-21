@@ -1,8 +1,9 @@
 #!/usr/bin/env ruby
-require "./student"
-require "./teacher"
-require "./book"
-require "./rental"
+# rubocop:disable Metrics/CyclomaticComplexity, Metrics/ClassLength
+require './student'
+require './teacher'
+require './book'
+require './rental'
 
 class App
   def initialize
@@ -21,10 +22,10 @@ class App
   end
 
   def run
-    puts 
+    puts
     puts ' Welcome to School Library App ! '
     puts '--------***--------------'
-    option = nil 
+    option = nil
     while option != 7
       puts 'Please choose an option by entrerin a number: '
       options
@@ -39,7 +40,7 @@ class App
   end
 
   def make(option)
-    case option 
+    case option
     when 1
       all_books
     when 2
@@ -63,19 +64,19 @@ class App
   def all_books
     key = 0
     puts
-    puts "Books 📚"
-    puts "No book yet! Choose (4) to add a book " if @books.empty?
+    puts 'Books 📚'
+    puts 'No book yet! Choose (4) to add a book ' if @books.empty?
     @books.each do |book|
-     puts "#{key}- Title: #{book.title} Author: #{book.author}"
-     key += 1
+      puts "#{key}- Title: #{book.title} Author: #{book.author}"
+      key += 1
     end
   end
 
   def all_people
     key = 0
     puts
-    puts "People 👥"
-    puts "No people yet! Choose (3) to add a person " if @people.empty?
+    puts 'People 👥'
+    puts 'No people yet! Choose (3) to add a person ' if @people.empty?
     @people.each do |person|
       print "#{key}- [#{person.class.name}] ID: #{person.id} Name: #{person.name} "
       print "Parent Permission: #{person.parent_permission}" if person.is_a?(Student)
@@ -88,15 +89,14 @@ class App
   def create_person
     entry = nil
     print 'Choose (1) to Create a Student or (2) for a Teacher: '
-    while ![1,2].include?(entry)
-      entry = gets.chomp.strip.to_i 
-      if ![1,2].include?(entry)
-        puts 'Choise is not correct : (1) for Student, (2) for Teacher' 
-      end
-    end 
-    if entry == 1
+    until [1, 2].include?(entry)
+      entry = gets.chomp.strip.to_i
+      puts 'Choise is not correct : (1) for Student, (2) for Teacher' unless [1, 2].include?(entry)
+    end
+    case entry
+    when 1
       create_student
-    elsif entry == 2
+    when 2
       create_teacher
     end
   end
@@ -128,14 +128,15 @@ class App
     name = gets.chomp.strip.capitalize
     print 'Has parent permission ? (N/Y): '
     permission = gets.chomp.strip.upcase
-    if permission == 'Y' || permission == 'YES'
+    case permission
+    when 'Y', 'YES'
       permission = true
-    elsif permission == 'N' || permission == 'NO'
+    when 'N', 'NO'
       permission = false
     end
     @people << Student.new(nil, age, name, parent_permission: permission)
     puts 'Student created successfuly! ✅ 🎉🎉🎉 '
-    puts 
+    puts
   end
 
   def create_book
@@ -145,7 +146,7 @@ class App
     author = gets.chomp.strip.capitalize
     @books << Book.new(title, author)
     puts 'Book created successfully! ✅ 🎉🎉🎉'
-    puts 
+    puts
   end
 
   def create_rental
@@ -161,21 +162,21 @@ class App
     person = @people[person_select]
     person.add_rental(date, book)
     puts 'Rental created successfuly! ✅ 🎉🎉🎉'
-    puts 
+    puts
   end
 
   def list_of_rental
     puts
     all_people
     puts 'Choose Person ID?: '
-    entry = gets.chomp.to_i 
-    puts "Rentals 🤝🏾"
+    entry = gets.chomp.to_i
+    puts 'Rentals 🤝🏾'
     @people.each do |person|
-      if person.id == entry
-        person.rentals.each do |rental|
-          puts "Date: #{rental.date} Book title: #{rental.book.title} by #{rental.book.author}"
-          puts "---====---"
-        end
+      next unless person.id == entry
+
+      person.rentals.each do |rental|
+        puts "Date: #{rental.date} Book title: #{rental.book.title} by #{rental.book.author}"
+        puts '---====---'
       end
     end
   end
@@ -185,5 +186,6 @@ def main
   app = App.new
   app.run
 end
+# rubocop:enable Metrics/CyclomaticComplexity, Metrics/ClassLength
 
 main
