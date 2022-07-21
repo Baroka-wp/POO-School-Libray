@@ -1,5 +1,6 @@
 # rubocop:disable Naming/PredicateName
 require './nameable'
+require './rental'
 
 class Person < Nameable
   attr_reader :id, :rentals
@@ -22,8 +23,8 @@ class Person < Nameable
     @name
   end
 
-  def add_rental(date, person)
-    Rental.new(date, self, person)
+  def add_rental(date, book)
+    Rental.new(date, self, book)
   end
 
   private
