@@ -1,10 +1,5 @@
 #!/usr/bin/env ruby
 # rubocop:disable Metrics/CyclomaticComplexity, Metrics/ClassLength
-require './student'
-require './teacher'
-require './book'
-require './rental'
-
 class App
   def initialize
     @people = []
@@ -181,11 +176,4 @@ class App
     end
   end
 end
-
-def main
-  app = App.new
-  app.run
-end
 # rubocop:enable Metrics/CyclomaticComplexity, Metrics/ClassLength
-
-main
