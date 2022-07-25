@@ -27,6 +27,8 @@ class Options
     puts '7 => Exit'
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
+
   def make(option)
     case option
     when 1
@@ -48,6 +50,8 @@ class Options
       option
     end
   end
+
+  # rubocop:enable Metrics/CyclomaticComplexity
 
   def all_books
     key = 0
