@@ -1,8 +1,7 @@
 #!/usr/bin/env ruby
-
+require 'pry'
 require './teacher'
 require './student'
-require './person'
 require './book'
 require './app'
 
