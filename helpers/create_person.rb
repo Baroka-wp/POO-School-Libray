@@ -13,7 +13,7 @@ class CreatePerson
     print 'Choose (1) to Create a Student or (2) for a Teacher: '
     until [1, 2].include?(entry)
       entry = gets.chomp.strip.to_i
-      puts 'Choise is not correct : (1) for Student, (2) for Teacher' unless [1, 2].include?(entry)
+      puts 'Choice is not correct : (1) for Student, (2) for Teacher' unless [1, 2].include?(entry)
     end
     case entry
     when 1
