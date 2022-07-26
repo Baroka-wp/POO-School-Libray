@@ -20,7 +20,7 @@ class CreateStudent
     when 'N', 'NO'
       permission = false
     end
-    @persons << Student.new(nil, age, name, parent_permission: permission)
+    @persons << Student.new(nil, nil, age, name, parent_permission: permission)
     puts 'Student created successfuly! ✅ 🎉🎉🎉 '
     puts
   end

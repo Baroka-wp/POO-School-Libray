@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require './options'
+require './helpers/options'
 class App
   def initialize
     @options = Options.new
@@ -18,6 +18,9 @@ class App
       @options.make(option)
       puts
     end
+    @options.save_books
+    @options.save_persons
+    @options.save_rentals
     puts '--------***--------------'
     puts ' GOOD BYE 🎉🎉🎉'
     puts '--------***--------------'

@@ -14,7 +14,7 @@ class CreateTeacher
     name = gets.chomp.strip.capitalize
     print 'Specialization: '
     specialization = gets.chomp.strip.capitalize
-    @persons << Teacher.new(age, specialization, name)
+    @persons << Teacher.new(nil, age, specialization, name)
     puts 'Teacher created successfuly! ✅ 🎉🎉🎉 '
     puts
   end

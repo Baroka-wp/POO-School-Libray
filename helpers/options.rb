@@ -1,20 +1,23 @@
-require './create_book'
-require './create_person'
-require './create_rental'
-require './create_student'
-require './create_teacher'
-require './teacher'
-require './student'
-require './rental'
+require './helpers/create_book'
+require './helpers/create_person'
+require './helpers/create_rental'
+require './helpers/create_student'
+require './helpers/create_teacher'
+require './controllers/books_controllers'
+require './controllers/persons_controllers'
+require './controllers/rentals_controllers'
 
 class Options
+  include BooksControllers
+  include PersonsControllers
+  include RentalsControllers
   def initialize
-    @books = []
-    @persons = []
+    @books = load_books
+    @persons = load_persons
     @create_book = CreateBook.new(@books)
     @create_person = CreatePerson.new(@persons)
-    @create_rental = CreateRental.new(@persons, @books)
-    # binding.pry
+    @rentals = load_rentals
+    @create_rental = CreateRental.new(@persons, @books, @rentals)
   end
 
   def options
@@ -59,7 +62,7 @@ class Options
     puts 'Books 📚'
     puts 'No book yet! Choose (4) to add a book ' if @books.empty?
     @books.each do |book|
-      puts "#{key}- Title: #{book.title} Author: #{book.author}"
+      puts "#{key}- #{book.title} by #{book.author}"
       key += 1
     end
   end
@@ -74,8 +77,7 @@ class Options
       next unless person.id == entry
 
       person.rentals.each do |rental|
-        puts "Date: #{rental.date} Book title: #{rental.book.title} by #{rental.book.author}"
-        puts '---====---'
+        puts "=> Date: #{rental.date} - Book: #{rental.book.title} by #{rental.book.author}"
       end
     end
   end
@@ -86,7 +88,7 @@ class Options
     puts 'People 👥'
     puts 'No people yet! Choose (3) to add a person ' if @persons.empty?
     @persons.each do |person|
-      print "#{key}- [#{person.class.name}] ID: #{person.id} Name: #{person.name} "
+      print "#{key}- [#{person.class.name}] ID: #{person.id}, Name: #{person.name}, "
       print "Parent Permission: #{person.parent_permission}" if person.is_a?(Student)
       print "Specialisation: #{person.specialization}" if person.is_a?(Teacher)
       puts

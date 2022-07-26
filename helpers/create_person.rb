@@ -1,5 +1,5 @@
-require './create_teacher'
-require './create_student'
+require './helpers/create_teacher'
+require './helpers/create_student'
 
 class CreatePerson
   def initialize(persons)

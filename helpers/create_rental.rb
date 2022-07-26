@@ -1,7 +1,8 @@
 class CreateRental
-  def initialize(people, books)
+  def initialize(people, books, rentals)
     @books = books
     @people = people
+    @rentals = rentals
   end
 
   def create_rental
@@ -19,7 +20,7 @@ class CreateRental
     date = gets.chomp.strip
     book = @books[book_select]
     person = @people[person_select]
-    person.add_rental(date, book)
+    @rentals << person.add_rental(date, book)
     puts 'Rental created successfuly! ✅ 🎉🎉🎉'
     puts
   end
