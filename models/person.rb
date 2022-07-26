@@ -1,6 +1,6 @@
 # rubocop:disable Naming/PredicateName
 require './helpers/nameable'
-require './helpers/rental'
+require './models/rental'
 
 class Person < Nameable
   attr_reader :id, :rentals
