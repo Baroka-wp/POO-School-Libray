@@ -12,7 +12,7 @@ class CreateBook
     author = gets.chomp.strip.capitalize
     @books << Book.new(nil, title, author)
 
-    puts 'Book created successfully! ✅ 🎉🎉🎉'
+    puts 'Book created successfully! ✅ 🎉🎉🎉 '
     puts
   end
 end
