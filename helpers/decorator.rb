@@ -1,4 +1,4 @@
-require './nameable'
+require './helpers/nameable'
 class Decorator < Nameable
   def initialize(nameable)
     @nameable = nameable

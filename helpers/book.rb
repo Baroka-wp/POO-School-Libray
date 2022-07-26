@@ -1,5 +1,4 @@
-require './rental'
-
+require './helpers/rental'
 class Book
   attr_reader :rentals
   attr_accessor :title, :author

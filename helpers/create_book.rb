@@ -1,3 +1,4 @@
+require './helpers/book'
 class CreateBook
   def initialize(books)
     @books = books

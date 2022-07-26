@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-require './options'
+require './helpers/options'
 class App
   def initialize
     @options = Options.new

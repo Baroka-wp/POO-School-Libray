@@ -1,11 +1,11 @@
-require './create_book'
-require './create_person'
-require './create_rental'
-require './create_student'
-require './create_teacher'
-require './teacher'
-require './student'
-require './rental'
+require './helpers/create_book'
+require './helpers/create_person'
+require './helpers/create_rental'
+require './helpers/create_student'
+require './helpers/create_teacher'
+require './helpers/teacher'
+require './helpers/student'
+require './helpers/rental'
 
 class Options
   def initialize
