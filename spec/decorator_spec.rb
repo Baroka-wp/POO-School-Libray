@@ -2,12 +2,11 @@ require './helpers/trimmer_decorator'
 require './helpers/capitalize_decorator'
 require './models/person'
 
-
 describe Decorator do
   before :each do
-    @person  = Person.new 23, 'maximilianus'
+    @person = Person.new 23, 'maximilianus'
     @capitalize = CapitalizeDecorator.new(@person)
-    @trimmerDecorator = TrimmerDecorator.new(@capitalize)
+    @trimmer_decorator = TrimmerDecorator.new(@capitalize)
   end
 
   it 'Should display john' do
@@ -19,7 +18,7 @@ describe Decorator do
   end
 
   it 'should slice if sting is more than 10 char' do
-    expect(@trimmerDecorator.correct_name).to eq 'Maximilian'
-    expect(@trimmerDecorator.correct_name.length).to be <= 10
+    expect(@trimmer_decorator.correct_name).to eq 'Maximilian'
+    expect(@trimmer_decorator.correct_name.length).to be <= 10
   end
 end
